@@ -1,0 +1,78 @@
+/* Made with love by Mutiullah Samim*/
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+/* css for login page */
+.login_header {
+  margin: 20px;
+}
+
+.login_panel {
+  max-width: 450px;
+  margin: 0 auto;
+  box-shadow: 3px 6px 10px rgba(0, 0, 0, .3) !important;
+  border: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  background-color: #6f42c1;
+}
+
+.login_panel .panel-heading {
+  border: none;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 20px;
+  background: none;
+  text-align: center;
+  color: #fbfff9;
+}
+
+.login_panel .panel-body {
+  padding: 20px;
+
+}
+
+.login_panel input {
+  border: none;
+  border-bottom: 1px solid #888888;
+}
+
+.login_panel .login_button {
+  width: 100%;
+  border-radius: 5px !important;
+}
+
+.login_panel .form-group {
+  margin-bottom: 20px;
+}
+
+#h_timer {
+  border: none;
+  background: none;
+  color: #0000ff;
+  font-weight: normal;
+}
+
+.questionaire .question {
+  font-size: 16px;
+  line-height: 36px;
+}
+
+.marks_section h4 {
+  background: #d5f7c4;
+  padding: 10px;
+  font-weight: 400;
+
+}
+
+.marks_section table {
+  width: 100%;
+}
+
+.marks_section table tr td {
+  padding: 8px;
+  font-size: 16px;
+}
