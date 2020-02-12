@@ -1,24 +1,34 @@
 <div class="row">
   <div>
     <figure class="text-center login_header">
-      <img src="valuefirst-logo.png" alt="Valuefirst Digital Media Pvt Ltd"/>
+      <img src="../../assets/images/valuefirst-logo.png" alt="Valuefirst Digital Media Pvt Ltd"/>
     </figure>
     <br/>
     <div class="panel panel-default login_panel">
       <div class="panel-heading">Online Assessment Login</div>
       <div class="panel-body">
-        <form class="form-horizontal" role="form" method="POST" action="#">
+        <form class="form-horizontal" role="form" [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm)">
           <input type="hidden" name="_token" value="">
 
           <div class="form-group">
             <div class="col-md-12">
-              <input type="email" class="form-control" name="email" value="" placeholder="Email">
+              <input type="email" class="form-control" [formControl]="loginForm.controls['email']" value=""
+                     placeholder="Email">
+              <div
+                *ngIf="loginForm.controls['email'].hasError('pattern') &&  loginForm.controls['email'].touched && !loginForm.controls['email'].valid && submitted"
+                class="col-md-12"><small id="emailHelp" class="text-white">{{messages.email}}</small>
+              </div>
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-md-12">
-              <input type="password" class="form-control" name="password" placeholder="Password">
+              <input [type]="showEye ? 'password' : 'text'" class="form-control"
+                     [formControl]="loginForm.controls['password']" placeholder="Password">
+              <span class="fa-eye" *ngIf="loginForm.controls['password'].value"
+                    [ngClass]="showEye ? 'fa fa-eye-slash' : 'fa fa-eye'" (click)="toggleEye()"></span>
+              <div *ngIf="loginForm.controls['password'].touched && !loginForm.controls['password'].valid && submitted"
+                   class="col-md-12"><small id="passwordHelp" class="text-white">{{messages.password}}</small></div>
             </div>
           </div>
 
@@ -34,7 +44,10 @@
 
           <div class="form-group">
             <div class="col-md-12">
-              <button type="submit" class="btn btn-success login_button">LOGIN</button>
+              <button type="submit" class="btn btn-success login_button"
+                      [disabled]="loginForm.controls['email'].hasError('required') || loginForm.controls['password'].hasError('required')">
+                LOGIN
+              </button>
             </div>
           </div>
 
