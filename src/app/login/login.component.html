@@ -1,11 +1,14 @@
 <div class="row">
   <div>
     <figure class="text-center login_header">
-      <img src="../../assets/images/valuefirst-logo.png" alt="Valuefirst Digital Media Pvt Ltd"/>
+      <img src="../../assets/images/quiz-sign.jpg" width="400" height="100" alt="Quiz" />
     </figure>
-    <br/>
+    <br />
     <div class="panel panel-default login_panel">
-      <div class="panel-heading">Online Assessment Login</div>
+      <div *ngIf="submitted && error != ''" class="alert alert-danger" role="alert">
+        {{error}}
+      </div>
+      <div class="panel-heading">Quiz Login</div>
       <div class="panel-body">
         <form class="form-horizontal" role="form" [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm)">
           <input type="hidden" name="_token" value="">
@@ -13,10 +16,11 @@
           <div class="form-group">
             <div class="col-md-12">
               <input type="email" class="form-control" [formControl]="loginForm.controls['email']" value=""
-                     placeholder="Email">
+                placeholder="Email">
               <div
-                *ngIf="loginForm.controls['email'].hasError('pattern') &&  loginForm.controls['email'].touched && !loginForm.controls['email'].valid && submitted"
-                class="col-md-12"><small id="emailHelp" class="text-white">{{messages.email}}</small>
+                *ngIf="loginForm.controls['email'].hasError('pattern') &&  loginForm.controls['email'].touched && !loginForm.controls['email'].valid"
+                class="col-md-12">
+                <p id="emailHelp" class="alert alert-danger login-error-message" role="alert">{{messages.email}}</p>
               </div>
             </div>
           </div>
@@ -24,19 +28,21 @@
           <div class="form-group">
             <div class="col-md-12">
               <input [type]="showEye ? 'password' : 'text'" class="form-control"
-                     [formControl]="loginForm.controls['password']" placeholder="Password">
+                [formControl]="loginForm.controls['password']" placeholder="Password">
               <span class="fa-eye" *ngIf="loginForm.controls['password'].value"
-                    [ngClass]="showEye ? 'fa fa-eye-slash' : 'fa fa-eye'" (click)="toggleEye()"></span>
-              <div *ngIf="loginForm.controls['password'].touched && !loginForm.controls['password'].valid && submitted"
-                   class="col-md-12"><small id="passwordHelp" class="text-white">{{messages.password}}</small></div>
+                [ngClass]="showEye ? 'fa fa-eye-slash' : 'fa fa-eye'" (click)="toggleEye()"></span>
+              <div *ngIf="loginForm.controls['password'].touched && !loginForm.controls['password'].valid"
+                class="col-md-12">
+                <p id="passwordHelp" class="alert alert-danger login-error-message" role="alert">{{messages.password}}
+                </p>
+              </div>
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-md-12">
               <label>
-                <input type="checkbox"
-                       name="remember" style="margin-right:2px;">
+                <input type="checkbox" name="remember" style="margin-right:2px;">
                 <span style="color: #ffffff">Remember me</span>
               </label>
             </div>
@@ -45,8 +51,21 @@
           <div class="form-group">
             <div class="col-md-12">
               <button type="submit" class="btn btn-success login_button"
-                      [disabled]="loginForm.controls['email'].hasError('required') || loginForm.controls['password'].hasError('required')">
+                [disabled]="loginForm.controls['email'].hasError('required') || loginForm.controls['password'].hasError('required')">
                 LOGIN
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-12 text-center text-white">
+              OR
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12">
+              <button (click)="register()" type="button" class="btn btn-success login_button">
+                REGISTER
               </button>
             </div>
           </div>

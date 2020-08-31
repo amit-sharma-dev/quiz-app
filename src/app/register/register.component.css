@@ -3,11 +3,11 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 /* css for login page */
-.login_header {
+.register_header {
   margin: 20px;
 }
 
-.login_panel {
+.register_panel {
   max-width: 450px;
   margin: 0 auto;
   box-shadow: 3px 6px 10px rgba(0, 0, 0, .3) !important;
@@ -20,7 +20,7 @@
   background-color: #6f42c1;
 }
 
-.login_panel .panel-heading {
+.register_panel .panel-heading {
   border: none;
   font-size: 20px;
   font-weight: 600;
@@ -30,53 +30,25 @@
   color: #fbfff9;
 }
 
-.login_panel .panel-body {
+.register_panel .panel-body {
   padding: 20px;
 
 }
 
-.login_panel input {
+.register_panel input {
   border: none;
   border-bottom: 1px solid #888888;
 }
 
-.login_panel .login_button {
+.register_panel .login_button {
   width: 100%;
   border-radius: 5px !important;
 }
 
-.login_panel .form-group {
+.register_panel .form-group {
   margin-bottom: 20px;
 }
 
-#h_timer {
-  border: none;
-  background: none;
-  color: #0000ff;
-  font-weight: normal;
-}
-
-.questionaire .question {
-  font-size: 16px;
-  line-height: 36px;
-}
-
-.marks_section h4 {
-  background: #d5f7c4;
-  padding: 10px;
-  font-weight: 400;
-
-}
-
-.marks_section table {
-  width: 100%;
-}
-
-.marks_section table tr td {
-  padding: 8px;
-  font-size: 16px;
-}
-
-.login-error-message {
+.register-error-message {
   margin-left: -14px;
 }

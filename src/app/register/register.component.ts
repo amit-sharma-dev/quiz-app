@@ -6,14 +6,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../_services';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
-  // Variables.
-  loginForm: FormGroup;
+  registerForm: FormGroup;
   messages = MESSAGES;
   pattern = PATTERN;
   submitted = false;
@@ -29,33 +28,28 @@ export class LoginComponent implements OnInit {
     private lowercasePipe: LowerCasePipe,
     private authenticationService: AuthenticationService
   ) {
-
-
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/dashboard']);
     }
-
   }
 
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
+  ngOnInit(): void {
+    this.registerForm = this.formBuilder.group({
+      'name': ['', Validators.compose([Validators.required])],
       'email': [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern(this.pattern.email)])],
       'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
     });
-    // localStorage.setItem('authToken', '');
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  // Form Submit Function.
   submitForm(form: FormGroup) {
-    if (this.loginForm.valid) {
+    if (this.registerForm.valid) {
       const payload = {
+        'name': form.value.name,
         'email': this.lowercasePipe.transform(form.value.email),
         'password': form.value.password
       };
       console.log(payload);
-      this.authenticationService.login(payload).subscribe(
+      this.authenticationService.register(payload).subscribe(
         (response) => {
           console.log('response');
           console.log(response);
@@ -76,17 +70,7 @@ export class LoginComponent implements OnInit {
       );
     } else {
       this.loading = false;
-      this.router.navigate(['login']);
+      this.router.navigate(['register']);
     }
   }
-
-  // Password Eye Function.
-  toggleEye() {
-    this.showEye = !this.showEye;
-  }
-
-  register() {
-    this.router.navigate(['/register']);
-  }
-
 }
