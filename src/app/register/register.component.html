@@ -18,7 +18,7 @@
                         <div class="col-md-12">
                             <input type="text" class="form-control" [formControl]="registerForm.controls['name']"
                                 value="" placeholder="Name">
-                            <div *ngIf="rregisterForm.controls['name'].touched && !registerForm.controls['name'].valid"
+                            <div *ngIf="registerForm.controls['name'].touched && !registerForm.controls['name'].valid"
                                 class="col-md-12">
                                 <p class="alert alert-danger register-error-message" role="alert">
                                     {{messages.name}}</p>
@@ -60,6 +60,20 @@
                             </button>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12 text-center text-white">
+                            OR
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                          <button (click)="login()" type="button" class="btn btn-success login_button">
+                            LOGIN
+                          </button>
+                        </div>
+                      </div>
 
                 </form>
             </div>

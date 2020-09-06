@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
           console.log(response);
           if (response.status === true) {
             localStorage.setItem('authToken', response.data.token);
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['/dashboard']);
           } else {
             console.log(response);
             this.submitted = true;

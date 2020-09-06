@@ -28,7 +28,7 @@ export class AuthenticationService {
       .pipe(map(response => {
         if (response.token) {
           // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
-          response.authdata = window.btoa(payload);
+          // response.authdata = window.btoa(payload);
           localStorage.setItem('currentUser', JSON.stringify(response));
           this.currentUserSubject.next(response);
         }
@@ -38,7 +38,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    if (!this.getAccessToken()) {
+    if (this.getAccessToken()) {
       this.http.get<any>('/auth/logout').subscribe(() => {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
@@ -55,7 +55,7 @@ export class AuthenticationService {
       .pipe(map(response => {
         if (response.token) {
           // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
-          response.authdata = window.btoa(payload);
+          // response.authdata = window.btoa(payload);
           localStorage.setItem('currentUser', JSON.stringify(response));
           this.currentUserSubject.next(response);
         }

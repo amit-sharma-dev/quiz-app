@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../_services/authentication.service';
+import { AuthenticationService } from 'src/app/_services';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,14 +8,13 @@ import { AuthenticationService } from '../../_services/authentication.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   logout() {
-    // remove user from local storage and set current user to null
-    this.authService.logout();
+    console.log('logout called');
+    this.authenticationService.logout();
   }
-
 }

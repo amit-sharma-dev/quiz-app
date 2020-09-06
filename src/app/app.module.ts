@@ -12,12 +12,14 @@ import { AuthInterceptor } from '../app/_services/interceptors/auth.interceptor'
 import { CommonModule } from '@angular/common'; 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,7 @@ import { RegisterComponent } from './register/register.component';
     NgxUiLoaderModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     LowerCasePipe
   ],
   bootstrap: [AppComponent]

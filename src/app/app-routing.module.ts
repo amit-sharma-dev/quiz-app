@@ -3,19 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_helpers';
 import { RegisterComponent } from './register/register.component';
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  {
-    path: 'dashboard',
-    loadChildren: () =>
-      import('../app/modules/dashboard/dashboard.module').then(
-        (m) => m.DashboardModule
-      ),
-    canActivate: [AuthGuard],
-  },
+  { path: 'dashboard', component: DashboardComponent }
 ];
 
 @NgModule({
