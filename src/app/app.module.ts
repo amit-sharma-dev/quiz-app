@@ -13,13 +13,17 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { AppInterceptor } from './_services/interceptors/app.interceptor';
+import { HeaderComponent } from './_shared/header/header.component';
+import { FooterComponent } from './_shared/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

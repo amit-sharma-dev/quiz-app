@@ -5,45 +5,45 @@
 @import "~bootstrap/dist/css/bootstrap-grid.min.css";
 
 body {
-  background: #faffff;
+  background: #e6ebeb;
 }
 
 /* font weight bold */
-.font-bold {
+/* .font-bold {
   font-weight: bold;
-}
+} */
 
 /* for navbar */
-.page-header-fixed .page-container {
+/* .page-header-fixed .page-container {
   margin-top: 0;
-}
+} */
 
-.navbar-brand {
+/* .navbar-brand {
   height: auto;
-}
+} */
 
 /* for sidebar */
-.page-sidebar {
+/* .page-sidebar {
   background: #ffffff;
-}
+} */
 
-.page-sidebar .page-sidebar-menu > li > a {
+/* .page-sidebar .page-sidebar-menu > li > a {
   border-top: 1px solid #f1f1f1;
   color: #171717;
   padding: 15px;
   font-weight: 400;
-}
+} */
 
-.page-content-wrapper .page-content {
+/* .page-content-wrapper .page-content {
   border-left: 1px solid #f1f1f1;
-}
+} */
 
 /* data cards */
-.data-cards {
+/* .data-cards {
   margin-top: 30px;
-}
+} */
 
-.data-cards .data-card .icon {
+/* .data-cards .data-card .icon {
   font-size: 30px;
   color: #949494;
-}
+} */

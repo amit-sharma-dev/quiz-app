@@ -23,7 +23,7 @@ export class AppInterceptor implements HttpInterceptor {
                     this.router.navigateByUrl('/login');
 
                 }
-                return throwError(error.message);
+                return throwError(error);
             })
         );
     }

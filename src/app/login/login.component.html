@@ -1,77 +1,40 @@
-<div class="row">
-  <div>
-    <figure class="text-center login_header">
-      <img src="../../assets/images/quiz-sign.jpg" width="400" height="100" alt="Quiz" />
-    </figure>
-    <br />
-    <div class="panel panel-default login_panel">
-      <div *ngIf="submitted && error != ''" class="alert alert-danger" role="alert">
+<form class="form-signin" [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm)">
+    <div *ngIf="submitted && error != ''" class="alert alert-danger" role="alert">
         {{error}}
-      </div>
-      <div class="panel-heading">Quiz Login</div>
-      <div class="panel-body">
-        <form class="form-horizontal" role="form" [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm)">
-          <input type="hidden" name="_token" value="">
-
-          <div class="form-group">
-            <div class="col-md-12">
-              <input type="email" class="form-control" [formControl]="loginForm.controls['email']" value=""
-                placeholder="Email">
-              <div
-                *ngIf="loginForm.controls['email'].hasError('pattern') &&  loginForm.controls['email'].touched && !loginForm.controls['email'].valid"
-                class="col-md-12">
-                <p id="emailHelp" class="alert alert-danger login-error-message" role="alert">{{messages.email}}</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-md-12">
-              <input [type]="showEye ? 'password' : 'text'" class="form-control"
-                [formControl]="loginForm.controls['password']" placeholder="Password">
-              <span class="fa-eye" *ngIf="loginForm.controls['password'].value"
-                [ngClass]="showEye ? 'fa fa-eye-slash' : 'fa fa-eye'" (click)="toggleEye()"></span>
-              <div *ngIf="loginForm.controls['password'].touched && !loginForm.controls['password'].valid"
-                class="col-md-12">
-                <p id="passwordHelp" class="alert alert-danger login-error-message" role="alert">{{messages.password}}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-md-12">
-              <label>
-                <input type="checkbox" name="remember" style="margin-right:2px;">
-                <span style="color: #ffffff">Remember me</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-md-12">
-              <button type="submit" class="btn btn-success login_button"
-                [disabled]="loginForm.controls['email'].hasError('required') || loginForm.controls['password'].hasError('required')">
-                LOGIN
-              </button>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-md-12 text-center text-white">
-              OR
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-md-12">
-              <button (click)="register()" type="button" class="btn btn-success login_button">
-                REGISTER
-              </button>
-            </div>
-          </div>
-
-        </form>
-      </div>
     </div>
-  </div>
-</div>
+    <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72"
+        height="72">
+    <label for="inputEmail" class="sr-only">Email address</label>
+
+    <input type="email" class="form-control" [formControl]="loginForm.controls['email']" value="" placeholder="Email">
+    <div *ngIf="loginForm.controls['email'].hasError('pattern') &&  loginForm.controls['email'].touched && !loginForm.controls['email'].valid"
+        class="col-md-12">
+        <p id="emailHelp" class="alert alert-danger login-error-message" role="alert">{{messages.email}}</p>
+    </div>
+
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input [type]="showEye ? 'password' : 'text'" class="form-control" [formControl]="loginForm.controls['password']"
+        placeholder="Password">
+    <span class="fa-eye" *ngIf="loginForm.controls['password'].value"
+        [ngClass]="showEye ? 'fa fa-eye-slash' : 'fa fa-eye'" (click)="toggleEye()"></span>
+    <div *ngIf="loginForm.controls['password'].touched && !loginForm.controls['password'].valid" class="col-md-12">
+        <p id="passwordHelp" class="alert alert-danger login-error-message" role="alert">{{messages.password}}
+        </p>
+    </div>
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block sign-in"
+        [disabled]="loginForm.controls['email'].hasError('required') || loginForm.controls['password'].hasError('required')"
+        type="submit">Sign in</button>
+
+    <div class="form-group">
+        <div class="col-md-12 text-center">
+            OR
+        </div>
+    </div>
+    <button (click)="register()" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+</form>
