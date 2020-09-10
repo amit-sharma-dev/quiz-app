@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "~10.0.14",
     "@angular/router": "~10.0.14",
     "@rxjs/rx": "^4.1.0",
-    "angular": "^1.7.9",
+    "angular": "^1.8.0",
     "bootstrap": "^4.4.1",
     "core-js": "^2.5.4",
     "jquery": "^3.5.1",
