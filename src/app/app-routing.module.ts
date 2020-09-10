@@ -4,10 +4,11 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_helpers';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', component: LoginComponent },
+  { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent }
 ];
