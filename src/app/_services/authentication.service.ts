@@ -39,7 +39,7 @@ export class AuthenticationService {
 
   logout() {
     if (this.getAccessToken()) {
-      this.http.get<any>('/auth/logout').subscribe(() => {
+      this.http.get<any>(`${environment.apiUrl}/auth/logout`).subscribe(() => {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);

@@ -6,13 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
-import { AppInterceptor } from '../app/_services/interceptors/app.interceptor';
+import { BasicAuthInterceptor } from '../app/_services/interceptors/basic-auth.interceptor';
 import { LowerCasePipe } from '@angular/common';
-import { AuthInterceptor } from '../app/_services/interceptors/auth.interceptor';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import { AppInterceptor } from './_services/interceptors/app.interceptor';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import { DashboardComponent } from './modules/dashboard/dashboard.component';
     NgxUiLoaderModule
   ],
   providers: [
-    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
     LowerCasePipe
   ],
   bootstrap: [AppComponent]
