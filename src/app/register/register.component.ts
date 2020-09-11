@@ -70,7 +70,7 @@ export class RegisterComponent implements OnInit {
       );
     } else {
       this.loading = false;
-      this.router.navigate(['register']);
+      this.router.navigate(['/register']);
     }
   }
 

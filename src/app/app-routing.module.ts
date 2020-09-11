@@ -5,12 +5,14 @@ import { AuthGuard } from './_helpers';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
+import { QuizComponent } from './modules/quiz/quiz.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'dashboard', component: DashboardComponent }
+  { path: 'quiz', component: QuizComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

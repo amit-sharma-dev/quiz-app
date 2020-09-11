@@ -1,0 +1,23 @@
+.space-bottom {
+    margin-top: 15px;
+}
+
+.space-top {
+    margin-bottom: 15px;
+}
+
+.container {
+    text-align: left;
+}
+
+.question {
+    width: 70%;
+    height: 100px;
+    float: left;
+}
+
+.selections {
+    width: 30%;
+    height: 100px;
+    float: left;
+}
