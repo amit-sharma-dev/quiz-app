@@ -7,13 +7,26 @@ import { QuizService } from './quiz.service';
   styleUrls: ['./quiz.component.css']
 })
 export class QuizComponent implements OnInit {
-  private allQuestions: any;
-  constructor(private quizService: QuizService) { }
 
-  ngOnInit(): void {
+  allQuestions: any;
+  isDataAvailable: boolean = false;
+
+  constructor(private quizService: QuizService) {
   }
 
-  async getAllQuestions() {
-    this.allQuestions = this.quizService.getAll();
+  ngOnInit(): void {
+    this.getAllQuestions();
+  }
+
+  getAllQuestions() {
+    this.quizService.getAll().subscribe(data => {
+      this.allQuestions = data;
+      console.log('questions ==');
+      console.log(this.allQuestions);
+
+    }, err => {
+      console.log('error ===>');
+      console.log(err);
+    });
   }
 }
