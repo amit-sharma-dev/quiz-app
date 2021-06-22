@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       'email': [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern(this.pattern.email)])],
-      'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
+      'password': ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
     // localStorage.setItem('authToken', '');
     // get return url from route parameters or default to '/'
@@ -63,15 +63,22 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('authToken', response.data.token);
             this.router.navigate(['/dashboard']);
           } else {
+            console.log('response');
             console.log(response);
-            this.submitted = true;
             this.error = response.message;
           }
         },
         (errors: any) => {
-          console.log(errors);
+          console.log('errors');
+          console.log(errors.error);
           this.submitted = true;
-          this.error = errors.error.message;
+          if (errors.error.errors.password) {
+            this.error = errors.error.errors.password[0];
+          } else if (errors.error.errors.email) {
+            this.error = errors.error.errors.email[0];
+          } else {
+            this.error = errors.error.message;
+          }
         }
       );
     } else {

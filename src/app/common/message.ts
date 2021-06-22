@@ -2,7 +2,7 @@ export let MESSAGES = {
   required: 'This field is required.',
   email: 'Please enter a valid email ID.',
   validname: 'Please enter valid name.',
-  password: 'Enter min 4 character combination of letters (using upper and lower case) and a special character (@#$%).',
+  password: 'Enter min 6 character combination of letters (using upper and lower case) and a special character (@#$%).',
   equalTo: 'New password and confirm password do not match.',
   number: 'Please enter valid number.',
   zipcode: 'Please enter valid zip code.',

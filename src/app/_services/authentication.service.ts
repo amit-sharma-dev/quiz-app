@@ -26,7 +26,9 @@ export class AuthenticationService {
   login(payload) {
     return this.http.post<any>(`${environment.apiUrl}/auth/login`, payload)
       .pipe(map(response => {
-        if (response.token) {
+        console.log('login api response');
+        console.log(response);
+        if (response.data.token) {
           // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
           // response.authdata = window.btoa(payload);
           localStorage.setItem('currentUser', JSON.stringify(response));
