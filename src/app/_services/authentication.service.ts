@@ -31,7 +31,7 @@ export class AuthenticationService {
         if (response.data.token) {
           // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
           // response.authdata = window.btoa(payload);
-          localStorage.setItem('currentUser', JSON.stringify(response));
+          localStorage.setItem('currentUser', JSON.stringify(response.data));
           this.currentUserSubject.next(response);
         }
 
@@ -47,7 +47,7 @@ export class AuthenticationService {
         this.currentUserSubject.next(null);
         this.router.navigateByUrl('/login');
         // tslint:disable-next-line: deprecation
-        location.reload(true);
+        location.reload();
       });
     }
   }

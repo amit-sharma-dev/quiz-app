@@ -16,6 +16,7 @@ import { AppInterceptor } from './_services/interceptors/app.interceptor';
 import { HeaderComponent } from './_shared/header/header.component';
 import { FooterComponent } from './_shared/footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { TopicComponent } from './modules/topic/topic.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HomeComponent } from './home/home.component';
     DashboardComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    TopicComponent
   ],
   imports: [
     CommonModule,

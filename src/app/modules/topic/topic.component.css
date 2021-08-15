@@ -1,0 +1,30 @@
+.space-bottom {
+    margin-top: 15px;
+}
+
+.space-top {
+    margin-bottom: 15px;
+}
+
+.container {
+    text-align: left;
+}
+
+.question {
+    width: 60%;
+    height: 100px;
+    float: left;
+    margin-left: 40px;
+}
+
+.row {
+    margin-top: 2px;
+    margin-left: 2px;
+}
+
+.selections {
+    border-style: solid;
+    width: 25%;
+    height: auto;
+    float: left;
+}
