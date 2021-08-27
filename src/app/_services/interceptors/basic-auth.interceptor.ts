@@ -19,10 +19,11 @@ export class BasicAuthInterceptor implements HttpInterceptor {
           Authorization: `Bearer ${currentUser.token}`
         }
       });
-    } else {
-      localStorage.removeItem('currentUser');
-      this.router.navigateByUrl('/login');
-    }
+    } 
+    // else {
+    //   localStorage.removeItem('currentUser');
+    //   this.router.navigateByUrl('/login');
+    // }
 
     return next.handle(request);
   }

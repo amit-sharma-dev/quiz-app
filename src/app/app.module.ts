@@ -17,6 +17,7 @@ import { HeaderComponent } from './_shared/header/header.component';
 import { FooterComponent } from './_shared/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { TopicComponent } from './modules/topic/topic.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,11 @@ import { TopicComponent } from './modules/topic/topic.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxUiLoaderModule
+    NgxUiLoaderModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+      enableHtml: true,
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

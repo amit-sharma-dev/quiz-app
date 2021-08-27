@@ -1,9 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~bootstrap/dist/css/bootstrap-grid.min.css";
 
 body {
   background: #e6ebeb;
+}
+
+.toast-top-center{
+  top: 6px;
+  z-index: 9999999999;
+}
+.toast-success{
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.38;
+  letter-spacing: normal;
+  color: #ffffff;
+  background-color: #42c039;
+  height: 50px;
+  border-radius: 6px;
+  text-align: left;
+  background-image: url("assets/images/messages/success_info.svg");
+}
+.toast-error{
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.38;
+  letter-spacing: normal;
+  color: #ffffff;
+  background-color: #f95849;
+  height: 50px;
+  border-radius: 6px;
+  text-align: left;
+  background-image: url("assets/images/messages/error_info.svg");
+}
+.toast-container.toast-top-center .ngx-toastr, .toast-container.toast-bottom-center .ngx-toastr{
+  width: fit-content;
+  max-width: 100%;
+  height: auto;
 }
