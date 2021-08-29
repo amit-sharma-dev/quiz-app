@@ -18,6 +18,9 @@ import { FooterComponent } from './_shared/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { TopicComponent } from './modules/topic/topic.component';
 import { ToastrModule } from 'ngx-toastr';
+import { MyLoaderComponent } from './components/my-loader/my-loader.component';
+import { LoaderService } from './_services/loader.service';
+import { LoaderInterceptor } from './_services/interceptors/loader-interceptor';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { ToastrModule } from 'ngx-toastr';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    TopicComponent
+    TopicComponent,
+    MyLoaderComponent
   ],
   imports: [
     CommonModule,
@@ -45,8 +49,10 @@ import { ToastrModule } from 'ngx-toastr';
     }),
   ],
   providers: [
+    LoaderService,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
     LowerCasePipe
   ],
   bootstrap: [AppComponent]

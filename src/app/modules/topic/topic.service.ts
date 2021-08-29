@@ -13,4 +13,8 @@ export class TopicService {
     getQuestions(topic: string): Observable<any> {
         return this.http.get<any>(`${environment.apiUrl}/topic/questions/` + topic);
     }
+
+    getQuestion(questionId: number): Observable<any> {
+        return this.http.get<any>(`${environment.apiUrl}/question/` + questionId);
+    }
 }

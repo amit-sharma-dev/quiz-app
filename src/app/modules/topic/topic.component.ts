@@ -12,7 +12,9 @@ export class TopicComponent implements OnInit {
 
   private title: string;
   protected questions: any;
+  protected question: any;
   protected isCorrectAnswer: boolean = false;
+  protected isDisabled: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -49,8 +51,30 @@ export class TopicComponent implements OnInit {
   }
 
   checkAnswer(evt: any) {
+    this.isCorrectAnswer = false;
     console.log('event');
-    console.log(evt.target.value);
+    console.log(evt.target);
+    const data = evt.target.value;
+    const splited = data.split(',');
+    const questionId = splited[0];
+    const optionId = splited[1];
+    this.topicService.getQuestion(questionId)
+      .subscribe(data => {
+        this.question = data.data;
+        console.log('question ==');
+        console.log(this.question);
+        for (let index = 0; index < this.question.options.length; index++) {
+          const element = this.question.options[index];
+          if (element.correct && optionId == element.id) {
+            console.log('true');
+            this.isCorrectAnswer = true;
+          }
+        }
+      }, err => {
+        console.log('error ===>');
+        console.log(err);
+        this.tostr.error(err.error.message);
+      });
   }
 
 }
