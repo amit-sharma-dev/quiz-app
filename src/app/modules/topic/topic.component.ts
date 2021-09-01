@@ -13,7 +13,9 @@ export class TopicComponent implements OnInit {
   private title: string;
   protected questions: any;
   protected question: any;
-  protected isCorrectAnswer: boolean = false;
+  protected isCorrectAnswer: any = { };
+  protected isWrongAnswer: any = { };
+  protected correctQuestion: boolean = false;
   protected isDisabled: boolean = false;
 
   constructor(
@@ -51,25 +53,27 @@ export class TopicComponent implements OnInit {
   }
 
   checkAnswer(evt: any) {
-    this.isCorrectAnswer = false;
-    console.log('event');
-    console.log(evt.target);
     const data = evt.target.value;
     const splited = data.split(',');
+    console.log(splited);
     const questionId = splited[0];
     const optionId = splited[1];
+    this.isCorrectAnswer[questionId] = false;
     this.topicService.getQuestion(questionId)
       .subscribe(data => {
         this.question = data.data;
-        console.log('question ==');
-        console.log(this.question);
         for (let index = 0; index < this.question.options.length; index++) {
           const element = this.question.options[index];
           if (element.correct && optionId == element.id) {
-            console.log('true');
-            this.isCorrectAnswer = true;
+            this.isCorrectAnswer[questionId] = true;
+            console.log('correct ans');
+            console.log(this.isCorrectAnswer);
+            return;
           }
         }
+        this.correctQuestion = true;
+        this.isWrongAnswer[questionId] = true;
+        this.isCorrectAnswer[questionId] = false;
       }, err => {
         console.log('error ===>');
         console.log(err);

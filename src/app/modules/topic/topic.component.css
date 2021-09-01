@@ -28,3 +28,7 @@
     height: auto;
     float: left;
 }
+
+.disable {
+    cursor: not-allowed;
+}
