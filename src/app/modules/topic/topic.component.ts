@@ -13,10 +13,17 @@ export class TopicComponent implements OnInit {
   private title: string;
   protected questions: any;
   protected question: any;
-  protected isCorrectAnswer: any = { };
-  protected isWrongAnswer: any = { };
+  protected isCorrectAnswer: any = {};
+  protected answerExplaination: any = {};
+  protected isWrongAnswer: any = {};
   protected correctQuestion: boolean = false;
   protected isDisabled: boolean = false;
+  protected noRecord: boolean = false;
+  protected totalQuestions: number = 0;
+  protected totalQuestionsAttempt: number = 0;
+  protected totalQuestionsLeft: number = 0;
+  protected totalQuestionsCorrect: number = 0;
+  protected totalQuestionsWrong: number = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,13 +41,18 @@ export class TopicComponent implements OnInit {
   }
 
   getAllQuestions() {
+    this.noRecord = false;
     this.questions = [];
-    console.log('title ==>');
-    console.log(this.title);
 
     this.topicService.getQuestions(this.title)
       .subscribe(data => {
         this.questions = data.data;
+        this.totalQuestions = this.questions.length;
+        this.totalQuestionsLeft = this.totalQuestions;
+        if (this.totalQuestions === 0) {
+          console.log('no record');
+          this.noRecord = true;
+        }
         this.tostr.success(data.message);
         console.log('questions ==');
         console.log(data);
@@ -48,32 +60,40 @@ export class TopicComponent implements OnInit {
       }, err => {
         console.log('error ===>');
         console.log(err);
+        this.noRecord = true;
+        this.totalQuestions = this.questions.length;
+        this.totalQuestionsLeft = this.totalQuestions;
+        this.totalQuestionsWrong = 0;
         this.tostr.error(err.error.message);
       });
   }
 
   checkAnswer(evt: any) {
+    let answerIsCorrect = false;
     const data = evt.target.value;
     const splited = data.split(',');
-    console.log(splited);
     const questionId = splited[0];
     const optionId = splited[1];
     this.isCorrectAnswer[questionId] = false;
+    this.answerExplaination[questionId] = false;
     this.topicService.getQuestion(questionId)
       .subscribe(data => {
         this.question = data.data;
         for (let index = 0; index < this.question.options.length; index++) {
           const element = this.question.options[index];
           if (element.correct && optionId == element.id) {
-            this.isCorrectAnswer[questionId] = true;
-            console.log('correct ans');
-            console.log(this.isCorrectAnswer);
-            return;
+            answerIsCorrect = true;
+            this.totalQuestionsCorrect = this.totalQuestionsCorrect + 1;
           }
         }
+
         this.correctQuestion = true;
-        this.isWrongAnswer[questionId] = true;
-        this.isCorrectAnswer[questionId] = false;
+        this.isWrongAnswer[questionId] = !answerIsCorrect ? true : false;
+        this.isCorrectAnswer[questionId] = answerIsCorrect ? true : false;
+        this.totalQuestionsAttempt = this.totalQuestionsAttempt + 1;
+        this.totalQuestionsLeft = this.totalQuestionsLeft - 1;
+        this.totalQuestionsWrong = !answerIsCorrect ? this.totalQuestionsWrong + 1 : this.totalQuestionsWrong;
+        this.answerExplaination[questionId] = this.question.answer_explanation != '' ? true : false;
       }, err => {
         console.log('error ===>');
         console.log(err);

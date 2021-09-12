@@ -32,3 +32,8 @@
 .disable {
     cursor: not-allowed;
 }
+
+.attempt_questions {
+    text-align:right;
+    margin-right: 100px;
+}
